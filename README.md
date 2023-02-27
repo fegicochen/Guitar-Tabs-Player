@@ -18,5 +18,3 @@ As a user, I want to be able to remove notes from the tabs.
 As a user, I want to be able to play the notes in the tabs.
 
 As a user, I want to be able to view the notes in the tabs.
-
-As a user, I want to be able to see where the player is currently in the tabs.
