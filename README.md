@@ -11,10 +11,12 @@ and I think creating this application will make it *easier*
 to create and listen to songs for guitar.
 
 ## User Stories
-As a user, I want to be able to add notes to the tabs.
+As a user, I want to be able to add multiple notes to the tabs.
 
 As a user, I want to be able to remove notes from the tabs.
 
-As a user, I want to be able to play the notes in the tabs.
+As a user, I want to be able to play the notes in the tabs to create sounds.
 
 As a user, I want to be able to view the notes in the tabs.
+
+As a user, I want to be able to exit the tabs.
