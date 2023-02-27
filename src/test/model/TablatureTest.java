@@ -2,7 +2,6 @@ package model;
 
 import jm.JMC;
 import jm.music.data.Note;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -91,11 +90,11 @@ class TablatureTest {
     void testPlayNotes() throws RuntimeException {
     testTabs.addNote(e0);
     testTabs.addNote(e1);
+    testTabs.playNotes();
     try {
-        testTabs.playNotes();
-    }
-    catch (Exception e) {
-        Assertions.fail("Exception " + e);
+        Thread.sleep(500);
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
     }
     assertEquals(2, testTabs.getTabs().size());
 }
