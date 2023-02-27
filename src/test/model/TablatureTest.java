@@ -106,7 +106,7 @@ class TablatureTest {
 }
 
     @Test
-    void testPlayNotesException() throws RuntimeException {
+    void testPlayNotesException() {
         // exception thrown
         testTabs.addNote(e0);
         testTabs.addNote(e1);
