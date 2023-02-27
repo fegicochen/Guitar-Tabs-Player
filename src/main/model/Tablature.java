@@ -54,10 +54,10 @@ public class Tablature {
     }
 
 
-    public void playNotes() {
+    public void playNotes() throws RuntimeException {
         for (Note note : tabs) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(speed);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

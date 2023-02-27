@@ -87,7 +87,7 @@ class TablatureTest {
     }
 
 @Test
-    void testPlayNotes() {
+    void testPlayNotes() throws RuntimeException {
     testTabs.addNote(e0);
     testTabs.addNote(e1);
     testTabs.playNotes();
