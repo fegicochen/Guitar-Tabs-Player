@@ -1,6 +1,7 @@
 package model;
 
 import jm.music.data.Note;
+import jm.util.Play;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,16 @@ public class Tablature {
     }
 
 
-
+    public void playNotes() {
+        for (Note note : tabs) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Play.midi(note);
+        }
+    }
 
 
 }

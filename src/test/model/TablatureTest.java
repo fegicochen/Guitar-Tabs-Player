@@ -86,6 +86,12 @@ class TablatureTest {
         assertEquals(0, testTabs.getTabs().size());
     }
 
-
+@Test
+    void testPlayNotes() {
+    testTabs.addNote(e0);
+    testTabs.addNote(e1);
+    testTabs.playNotes();
+    assertEquals(2, testTabs.getTabs().size());
+}
 
 }
