@@ -8,7 +8,7 @@ import java.util.List;
 
 // Represents a guitar tablature having tabs and speed
 public class Tablature {
-    private static final int speed = 500; // speed to play the notes in milliseconds
+    private int speed = 500; // speed to play the notes in milliseconds
     private final List<Note> tabs; // guitar tablature with notes to be play
 
 
@@ -25,6 +25,13 @@ public class Tablature {
 
     public int getSpeed() {
         return speed;
+    }
+
+    /*
+     * EFFECTS: sets the speed of played notes to num
+     */
+    public void setSpeed(int num) {
+        this.speed = num;
     }
 
     /*

@@ -37,6 +37,12 @@ class TablatureTest {
         assertEquals(500, testTabs.getSpeed());
     }
 
+    @Test
+    void testSetSpeed() {
+        testTabs.setSpeed(10);
+        assertEquals(10, testTabs.getSpeed());
+    }
+
 
     @Test
     void testGetNote() {
@@ -88,15 +94,29 @@ class TablatureTest {
 
 @Test
     void testPlayNotes() throws RuntimeException {
+        // no exceptions thrown
     testTabs.addNote(e0);
     testTabs.addNote(e1);
-    testTabs.playNotes();
-    try {
-        Thread.sleep(500);
-    } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+    try{
+        testTabs.playNotes();
+    } catch (Exception e) {
+        fail("no work");
     }
     assertEquals(2, testTabs.getTabs().size());
 }
+
+    @Test
+    void testPlayNotesException() throws RuntimeException {
+        // exception thrown
+        testTabs.addNote(e0);
+        testTabs.addNote(e1);
+        testTabs.setSpeed(-1);
+        try{
+            testTabs.playNotes();
+        } catch (Exception e) {
+            // do nothing
+        }
+        assertEquals(2, testTabs.getTabs().size());
+    }
 
 }
