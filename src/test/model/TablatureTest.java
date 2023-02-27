@@ -33,6 +33,21 @@ class TablatureTest {
     }
 
     @Test
+    void testGetSpeed() {
+        assertEquals(500, testTabs.getSpeed());
+    }
+
+
+    @Test
+    void testGetNote() {
+        testTabs.addNote(e0);
+        testTabs.addNote(e1);
+        assertEquals(e1, testTabs.getNote(1));
+        assertEquals(e0, testTabs.getNote(0));
+    }
+
+
+    @Test
     void testAddNote() {
         testTabs.addNote(e1);
         assertEquals(e1, testTabs.getTabs().get(0));

@@ -3,7 +3,6 @@ package ui;
 import jm.music.data.Note;
 import model.Tablature;
 
-
 import java.util.Scanner;
 
 // Guitar Tabs application
