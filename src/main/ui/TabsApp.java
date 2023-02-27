@@ -81,14 +81,14 @@ public class TabsApp {
         Note newNote = new Note();
         newNote.setPitch(note);
         tabs.addNote(newNote);
-        printTabs();
+        printNotes();
     }
 
     // MODIFIES: this
     // EFFECTS: removes last note
     private void removeNotes() {
         tabs.removeNote();
-        printTabs();
+        printNotes();
     }
 
     // MODIFIES: this
@@ -101,9 +101,12 @@ public class TabsApp {
 
 
     // EFFECTS: prints tabs to the screen
-    private void printTabs() {
+    private void printNotes() {
         System.out.println("Tab:");
-        tabs.printNotes();
+        for (Note note : tabs.getTabs()) {
+            System.out.println(note);
+        }
     }
+
 }
 

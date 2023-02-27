@@ -51,14 +51,7 @@ public class Tablature {
     }
 
 
-    /*
-     * EFFECTS: prints the notes in the tablature
-     */
-    public void printNotes() {
-        for (Note note : tabs) {
-            System.out.println(note);
-        }
-    }
+
 
     public void playNotes() {
         for (Note note : tabs) {
