@@ -7,6 +7,7 @@ import model.Tablature;
 import java.util.Scanner;
 
 // Guitar Tabs application
+// Code used from TellerApp in AccountNotRobust
 public class TabsApp {
     private Tablature tabs;
     private Scanner input;
@@ -96,8 +97,6 @@ public class TabsApp {
     private void playNotes() {
         tabs.playNotes();
     }
-
-
 
 
     // EFFECTS: prints tabs to the screen

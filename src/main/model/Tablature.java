@@ -12,7 +12,6 @@ public class Tablature {
     private final List<Note> tabs; // guitar tablature with notes to be play
 
 
-
     /*
      * EFFECTS: creates a guitar tablature
      */
@@ -28,6 +27,10 @@ public class Tablature {
         return speed;
     }
 
+    /*
+     * REQUIRES: the number of element has a note
+     * EFFECTS: gets the note of the number element in tabs
+     */
     public Note getNote(Integer integer) {
         return this.tabs.get(integer);
     }
@@ -49,8 +52,6 @@ public class Tablature {
     public void removeNote() {
         tabs.remove((tabs.size() - 1));
     }
-
-
 
 
     public void playNotes() {

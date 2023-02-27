@@ -2,13 +2,13 @@ package model;
 
 import jm.JMC;
 import jm.music.data.Note;
-import jm.util.Play;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Tests for Tablature Class
 class TablatureTest {
     private Tablature testTabs;
     private Note e0;
@@ -35,7 +35,7 @@ class TablatureTest {
     @Test
     void testAddNote() {
         testTabs.addNote(e1);
-        assertEquals(e1,testTabs.getTabs().get(0));
+        assertEquals(e1, testTabs.getTabs().get(0));
         assertEquals(1, testTabs.getTabs().size());
     }
 
@@ -43,8 +43,8 @@ class TablatureTest {
     void testAddNoteMultiple() {
         testTabs.addNote(e1);
         testTabs.addNote(e2);
-        assertEquals(e1,testTabs.getTabs().get(0));
-        assertEquals(e2,testTabs.getTabs().get(1));
+        assertEquals(e1, testTabs.getTabs().get(0));
+        assertEquals(e2, testTabs.getTabs().get(1));
         assertEquals(2, testTabs.getTabs().size());
     }
 
@@ -53,7 +53,7 @@ class TablatureTest {
         testTabs.addNote(e1);
         testTabs.addNote(e2);
         testTabs.removeNote();
-        assertEquals(e1,testTabs.getTabs().get(0));
+        assertEquals(e1, testTabs.getTabs().get(0));
         assertEquals(1, testTabs.getTabs().size());
 
     }
@@ -65,7 +65,7 @@ class TablatureTest {
         testTabs.addNote(e2);
         testTabs.removeNote();
         testTabs.removeNote();
-        assertEquals(e0,testTabs.getTabs().get(0));
+        assertEquals(e0, testTabs.getTabs().get(0));
         assertEquals(1, testTabs.getTabs().size());
         testTabs.removeNote();
         assertEquals(0, testTabs.getTabs().size());
