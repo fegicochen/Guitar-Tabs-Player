@@ -1,6 +1,8 @@
 package ui;
 
+import jm.music.data.Note;
 import model.Tablature;
+
 
 import java.util.Scanner;
 
@@ -75,8 +77,10 @@ public class TabsApp {
     // EFFECTS: adds a note
     private void addNotes() {
         System.out.print("Enter note to add: ");
-        String note = input.next();
-        tabs.addNote(note);
+        int note = input.nextInt();
+        Note newNote = new Note();
+        newNote.setPitch(note);
+        tabs.addNote(newNote);
         printTabs();
     }
 
@@ -99,7 +103,7 @@ public class TabsApp {
     // EFFECTS: prints tabs to the screen
     private void printTabs() {
         System.out.println("Tab:");
-        tabs.playNotes();
+        tabs.printNotes();
     }
 }
 

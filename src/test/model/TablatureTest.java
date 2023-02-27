@@ -1,5 +1,7 @@
 package model;
 
+import jm.JMC;
+import jm.music.data.Note;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,18 +10,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TablatureTest {
     private Tablature testTabs;
-    private String e0;
-    private String e1;
-    private String e2;
+    private Note e0;
+    private Note e1;
+    private Note e2;
 
 
     @BeforeEach
     void runBefore() {
         testTabs = new Tablature();
-        e0 = "E0";
-        e1 = "E1";
-        e2 = "E2";
-
+        e0 = new Note();
+        e0.setPitch(JMC.e0);
+        e1 = new Note();
+        e1.setPitch(JMC.e1);
+        e2 = new Note();
+        e2.setPitch(JMC.e2);
     }
 
     @Test

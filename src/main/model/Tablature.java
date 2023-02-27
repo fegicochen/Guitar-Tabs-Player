@@ -1,12 +1,15 @@
 package model;
 
+import jm.music.data.Note;
+import jm.util.Play;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a guitar tablature having tabs and speed
 public class Tablature {
-    private static final int speed = 1; // speed to play the notes
-    private final List<String> tabs; // guitar tablature with notes to be play
+    private static final int speed = 500; // speed to play the notes in milliseconds
+    private final List<Note> tabs; // guitar tablature with notes to be play
 
 
 
@@ -17,7 +20,7 @@ public class Tablature {
         this.tabs = new ArrayList<>();
     }
 
-    public List<String> getTabs() {
+    public List<Note> getTabs() {
         return tabs;
     }
 
@@ -25,7 +28,7 @@ public class Tablature {
         return speed;
     }
 
-    public String getNote(Integer integer) {
+    public Note getNote(Integer integer) {
         return this.tabs.get(integer);
     }
 
@@ -33,7 +36,7 @@ public class Tablature {
      * MODIFIES: this
      * EFFECTS: adds a note to the end of the guitar tablature
      */
-    public void addNote(String note) {
+    public void addNote(Note note) {
         tabs.add(note);
     }
 
@@ -49,11 +52,22 @@ public class Tablature {
 
 
     /*
-     * EFFECTS: plays the notes in the tablature
+     * EFFECTS: prints the notes in the tablature
      */
+    public void printNotes() {
+        for (Note note : tabs) {
+            System.out.println(note);
+        }
+    }
+
     public void playNotes() {
-        for (String tab : tabs) {
-            System.out.println(tab);
+        for (Note note : tabs) {
+            try {
+                Thread.sleep(speed);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Play.midi(note);
         }
     }
 
