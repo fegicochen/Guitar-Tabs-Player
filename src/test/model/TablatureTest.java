@@ -93,14 +93,15 @@ class TablatureTest {
     }
 
 @Test
-    void testPlayNotes() throws RuntimeException {
+    void testPlayNotes() {
         // no exceptions thrown
     testTabs.addNote(e0);
     testTabs.addNote(e1);
+    testTabs.setSpeed(100);
     try{
         testTabs.playNotes();
-    } catch (Exception e) {
-        fail("no work");
+    } catch (RuntimeException e) {
+        fail("RuntimeException should not have been thrown");
     }
     assertEquals(2, testTabs.getTabs().size());
 }
@@ -110,13 +111,13 @@ class TablatureTest {
         // exception thrown
         testTabs.addNote(e0);
         testTabs.addNote(e1);
-        testTabs.setSpeed(-1);
+        testTabs.setSpeed(-100);
         try{
             testTabs.playNotes();
-        } catch (Exception e) {
-            // do nothing
+            fail("RuntimeException was not thrown");
+        } catch (RuntimeException e) {
+            // expected
         }
-        assertEquals(2, testTabs.getTabs().size());
     }
 
 }
