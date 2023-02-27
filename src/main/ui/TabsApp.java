@@ -1,6 +1,7 @@
 package ui;
 
 import jm.music.data.Note;
+import jm.util.Play;
 import model.Tablature;
 
 import java.util.Scanner;
@@ -10,6 +11,17 @@ import java.util.Scanner;
 public class TabsApp {
     private Tablature tabs;
     private Scanner input;
+
+    public void playNotes() {
+        for (Note note : tabs.getTabs()) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Play.midi(note);
+        }
+    }
 
     // EFFECTS: runs the guitar tabs application
     public TabsApp() {
@@ -91,11 +103,7 @@ public class TabsApp {
         printNotes();
     }
 
-    // MODIFIES: this
-    // EFFECTS: plays the notes in the tabs
-    private void playNotes() {
-        tabs.playNotes();
-    }
+
 
 
     // EFFECTS: prints tabs to the screen

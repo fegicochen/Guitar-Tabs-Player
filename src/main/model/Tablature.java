@@ -54,16 +54,7 @@ public class Tablature {
     }
 
 
-    public void playNotes() {
-        for (Note note : tabs) {
-            try {
-                Thread.sleep(speed);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            Play.midi(note);
-        }
-    }
+
 
 
 }
