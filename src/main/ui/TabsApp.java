@@ -12,17 +12,6 @@ public class TabsApp {
     private Tablature tabs;
     private Scanner input;
 
-    public void playNotes() {
-        for (Note note : tabs.getTabs()) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            Play.midi(note);
-        }
-    }
-
     // EFFECTS: runs the guitar tabs application
     public TabsApp() {
         runTabs();
@@ -111,6 +100,17 @@ public class TabsApp {
         System.out.println("Tab:");
         for (Note note : tabs.getTabs()) {
             System.out.println(note);
+        }
+    }
+
+    private void playNotes() {
+        for (Note note : tabs.getTabs()) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Play.midi(note);
         }
     }
 

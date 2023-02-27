@@ -2,7 +2,6 @@ package model;
 
 import jm.JMC;
 import jm.music.data.Note;
-import jm.util.Play;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
