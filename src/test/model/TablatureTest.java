@@ -11,25 +11,25 @@ import static org.junit.jupiter.api.Assertions.*;
 // Tests for Tablature Class
 class TablatureTest {
     private Tablature testTabs;
-    private Note e0;
-    private Note e1;
-    private Note e2;
+    private GuitarNote e0;
+    private GuitarNote e1;
+    private GuitarNote e2;
 
 
     @BeforeEach
     void runBefore() {
-        testTabs = new Tablature("Song", "Artist");
-        e0 = new Note();
+        testTabs = new Tablature("Song");
+        e0 = new GuitarNote("e0");
         e0.setPitch(JMC.e0);
-        e1 = new Note();
+        e1 = new GuitarNote("e1");
         e1.setPitch(JMC.e1);
-        e2 = new Note();
+        e2 = new GuitarNote("e2");
         e2.setPitch(JMC.e2);
     }
 
     @Test
     void testConstructor() {
-        assertEquals(0, testTabs.getTabs().size());
+        assertEquals(0, testTabs.getNotes().size());
     }
 
     @Test
@@ -56,17 +56,17 @@ class TablatureTest {
     @Test
     void testAddNote() {
         testTabs.addNote(e1);
-        assertEquals(e1, testTabs.getTabs().get(0));
-        assertEquals(1, testTabs.getTabs().size());
+        assertEquals(e1, testTabs.getNotes().get(0));
+        assertEquals(1, testTabs.getNotes().size());
     }
 
     @Test
     void testAddNoteMultiple() {
         testTabs.addNote(e1);
         testTabs.addNote(e2);
-        assertEquals(e1, testTabs.getTabs().get(0));
-        assertEquals(e2, testTabs.getTabs().get(1));
-        assertEquals(2, testTabs.getTabs().size());
+        assertEquals(e1, testTabs.getNotes().get(0));
+        assertEquals(e2, testTabs.getNotes().get(1));
+        assertEquals(2, testTabs.getNotes().size());
     }
 
     @Test
@@ -74,8 +74,8 @@ class TablatureTest {
         testTabs.addNote(e1);
         testTabs.addNote(e2);
         testTabs.removeNote();
-        assertEquals(e1, testTabs.getTabs().get(0));
-        assertEquals(1, testTabs.getTabs().size());
+        assertEquals(e1, testTabs.getNotes().get(0));
+        assertEquals(1, testTabs.getNotes().size());
 
     }
 
@@ -86,10 +86,10 @@ class TablatureTest {
         testTabs.addNote(e2);
         testTabs.removeNote();
         testTabs.removeNote();
-        assertEquals(e0, testTabs.getTabs().get(0));
-        assertEquals(1, testTabs.getTabs().size());
+        assertEquals(e0, testTabs.getNotes().get(0));
+        assertEquals(1, testTabs.getNotes().size());
         testTabs.removeNote();
-        assertEquals(0, testTabs.getTabs().size());
+        assertEquals(0, testTabs.getNotes().size());
     }
 
 @Test
@@ -103,7 +103,7 @@ class TablatureTest {
     } catch (RuntimeException e) {
         fail("RuntimeException should not have been thrown");
     }
-    assertEquals(2, testTabs.getTabs().size());
+    assertEquals(2, testTabs.getNotes().size());
 }
 
     @Test

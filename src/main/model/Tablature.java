@@ -2,37 +2,39 @@ package model;
 
 import jm.music.data.Note;
 import jm.util.Play;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a guitar tablature having tabs and speed
-public class Tablature {
+public class Tablature implements Writable {
     private String name;
-    private String artist;
     private int speed = 500; // speed to play the notes in milliseconds
-    private final List<Note> tabs; // guitar tablature with notes to be play
+    private final List<GuitarNote> notes; // guitar tablature with notes to be play
 
 
     /*
      * EFFECTS: creates a guitar tablature
      */
-    public Tablature(String name, String artist) {
-        this.tabs = new ArrayList<>();
+    public Tablature(String name) {
+        this.notes = new ArrayList<>();
         this.name = name;
-        this.artist = artist;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getArtist() {
-        return artist;
+    public int numNotes() {
+        return notes.size();
     }
 
-    public List<Note> getTabs() {
-        return tabs;
+
+    public List<GuitarNote> getNotes() {
+        return notes;
     }
 
     public int getSpeed() {
@@ -51,15 +53,15 @@ public class Tablature {
      * EFFECTS: gets the note of the number element in tabs
      */
     public Note getNote(Integer integer) {
-        return this.tabs.get(integer);
+        return this.notes.get(integer);
     }
 
     /*
      * MODIFIES: this
      * EFFECTS: adds a note to the end of the guitar tablature
      */
-    public void addNote(Note note) {
-        tabs.add(note);
+    public void addNote(GuitarNote note) {
+        notes.add(note);
     }
 
 
@@ -69,12 +71,12 @@ public class Tablature {
      * EFFECTS: removes a note at the end of the guitar tablature
      */
     public void removeNote() {
-        tabs.remove((tabs.size() - 1));
+        notes.remove((notes.size() - 1));
     }
 
 
-        public void playNotes() {
-        for (Note note : tabs) {
+    public void playNotes() {
+        for (GuitarNote note : notes) {
             try {
                 Thread.sleep(speed);
             } catch (InterruptedException e) {
@@ -84,5 +86,22 @@ public class Tablature {
         }
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("notes", notesToJson());
+        return json;
+    }
 
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray notesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (GuitarNote note : notes) {
+            jsonArray.put(note.toJson());
+        }
+
+        return jsonArray;
+    }
 }
