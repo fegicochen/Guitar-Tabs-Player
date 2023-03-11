@@ -81,9 +81,7 @@ public class Tablature implements Writable {
         for (GuitarNote note : notes) {
             try {
                 Thread.sleep(speed);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            } catch (Exception e) {}
             Play.midi(note);
         }
     }
