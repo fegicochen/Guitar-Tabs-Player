@@ -1,5 +1,6 @@
 package ui;
 
+import jm.JMC;
 import jm.music.data.Note;
 import model.Tablature;
 
@@ -59,7 +60,7 @@ public class TabsApp {
     // MODIFIES: this
     // EFFECTS: initializes tabs
     private void init() {
-        tabs = new Tablature();
+        tabs = new Tablature("Song", "Artist");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }

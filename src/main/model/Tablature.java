@@ -8,6 +8,8 @@ import java.util.List;
 
 // Represents a guitar tablature having tabs and speed
 public class Tablature {
+    private String name;
+    private String artist;
     private int speed = 500; // speed to play the notes in milliseconds
     private final List<Note> tabs; // guitar tablature with notes to be play
 
@@ -15,8 +17,18 @@ public class Tablature {
     /*
      * EFFECTS: creates a guitar tablature
      */
-    public Tablature() {
+    public Tablature(String name, String artist) {
         this.tabs = new ArrayList<>();
+        this.name = name;
+        this.artist = artist;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getArtist() {
+        return artist;
     }
 
     public List<Note> getTabs() {
@@ -61,7 +73,7 @@ public class Tablature {
     }
 
 
-    public void playNotes() throws RuntimeException {
+        public void playNotes() {
         for (Note note : tabs) {
             try {
                 Thread.sleep(speed);

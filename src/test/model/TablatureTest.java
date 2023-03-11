@@ -18,7 +18,7 @@ class TablatureTest {
 
     @BeforeEach
     void runBefore() {
-        testTabs = new Tablature();
+        testTabs = new Tablature("Song", "Artist");
         e0 = new Note();
         e0.setPitch(JMC.e0);
         e1 = new Note();
