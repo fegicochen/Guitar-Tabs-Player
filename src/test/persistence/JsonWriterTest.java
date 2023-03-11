@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class JsonWriterTest extends JsonTest {
     //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to

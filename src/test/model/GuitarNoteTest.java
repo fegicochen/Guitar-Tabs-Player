@@ -1,10 +1,9 @@
 package model;
-import jm.JMC;
-import jm.music.data.Note;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Tests for GuitarNote Class
 public class GuitarNoteTest {

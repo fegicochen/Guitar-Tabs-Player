@@ -1,12 +1,12 @@
 package model;
 
 import jm.JMC;
-import jm.music.data.Note;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 // Tests for Tablature Class
 class TablatureTest {
@@ -92,27 +92,32 @@ class TablatureTest {
         assertEquals(0, testTabs.getNotes().size());
     }
 
-@Test
+    @Test
     void testPlayNotes() {
         // no exceptions thrown
-    testTabs.addNote(e0);
-    testTabs.addNote(e1);
-    testTabs.setSpeed(100);
-    try{
-        testTabs.playNotes();
-    } catch (RuntimeException e) {
-        fail("RuntimeException should not have been thrown");
+        testTabs.addNote(e0);
+        testTabs.addNote(e1);
+        testTabs.setSpeed(100);
+        try {
+            testTabs.playNotes();
+        } catch (RuntimeException e) {
+            fail("RuntimeException should not have been thrown");
+        }
+        assertEquals(2, testTabs.getNotes().size());
     }
-    assertEquals(2, testTabs.getNotes().size());
-}
 
     @Test
     void testPlayNotesException() {
         testTabs.addNote(e0);
         testTabs.addNote(e1);
         testTabs.setSpeed(-100);
-        Thread.currentThread().interrupt();
-        testTabs.playNotes();
+        try {
+            Thread.currentThread().interrupt();
+            testTabs.playNotes();
+            Assertions.assertTrue(Thread.interrupted());
+        } catch (RuntimeException e) {
+            // good
+        }
     }
 
 }
