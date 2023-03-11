@@ -1,0 +1,17 @@
+{
+    "notes": [
+        {
+            "name": "D",
+            "pitch": 50
+        },
+        {
+            "name": "C",
+            "pitch": 60
+        },
+        {
+            "name": "Bb",
+            "pitch": 70
+        }
+    ],
+    "name": "Song"
+}
