@@ -74,7 +74,9 @@ public class Tablature implements Writable {
         notes.remove((notes.size() - 1));
     }
 
-
+    /*
+     * EFFECTS: plays all notes in the guitar tablature
+     */
     public void playNotes() {
         for (GuitarNote note : notes) {
             try {

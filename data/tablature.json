@@ -1,16 +1,16 @@
 {
     "notes": [
         {
-            "name": "D",
-            "pitch": 50
+            "name": "G",
+            "pitch": 55
         },
         {
-            "name": "C",
-            "pitch": 60
+            "name": "A",
+            "pitch": 57
         },
         {
-            "name": "Bb",
-            "pitch": 70
+            "name": "B",
+            "pitch": 59
         }
     ],
     "name": "Song"

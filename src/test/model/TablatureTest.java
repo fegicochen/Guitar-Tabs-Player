@@ -113,6 +113,7 @@ class TablatureTest {
         testTabs.addNote(e1);
         testTabs.setSpeed(-100);
         try{
+            Thread.currentThread().interrupt();
             testTabs.playNotes();
             fail("RuntimeException was not thrown");
         } catch (RuntimeException e) {
