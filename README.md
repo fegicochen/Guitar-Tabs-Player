@@ -20,3 +20,7 @@ As a user, I want to be able to play the notes in the tabs to create sounds.
 As a user, I want to be able to view the notes in the tabs.
 
 As a user, I want to be able to exit the tabs.
+
+As a user, I want to be able to save the tabs to file. (if I so choose)
+
+As a user, I want to be able to load the tabs from file. (if I so choose)
