@@ -24,3 +24,14 @@ As a user, I want to be able to exit the tabs.
 As a user, I want to be able to save the tabs to file. (if I so choose)
 
 As a user, I want to be able to load the tabs from file. (if I so choose)
+
+# Instructions for Grader
+- You can add a GuitarNote to the Tablature by clicking the Add Note button and entering a pitch
+
+- You can remove a GuitarNote from the Tablature by clicking the Remove Note button
+
+- You can locate my visual component by clicking the Play Notes button
+
+- You can save the state of my application by clicking the Save Notes button
+
+- You can reload the state of my application by clicking the Load Notes button

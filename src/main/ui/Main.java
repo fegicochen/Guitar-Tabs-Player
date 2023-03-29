@@ -2,6 +2,7 @@ package ui;
 
 import java.io.FileNotFoundException;
 
+// Runs TabsApp
 public class Main {
     public static void main(String[] args) {
         try {

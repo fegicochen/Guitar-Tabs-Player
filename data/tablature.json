@@ -1,17 +1,97 @@
 {
     "notes": [
         {
+            "name": "Ab",
+            "pitch": 56
+        },
+        {
+            "name": "Ab",
+            "pitch": 56
+        },
+        {
+            "name": "Ab",
+            "pitch": 56
+        },
+        {
             "name": "G",
             "pitch": 55
         },
         {
-            "name": "A",
-            "pitch": 57
+            "name": "G",
+            "pitch": 55
         },
         {
-            "name": "B",
-            "pitch": 59
+            "name": "Ab",
+            "pitch": 56
+        },
+        {
+            "name": "Bb",
+            "pitch": 58
+        },
+        {
+            "name": "C",
+            "pitch": 60
+        },
+        {
+            "name": "C#",
+            "pitch": 61
+        },
+        {
+            "name": "Eb",
+            "pitch": 63
+        },
+        {
+            "name": "F",
+            "pitch": 65
+        },
+        {
+            "name": "Eb",
+            "pitch": 63
+        },
+        {
+            "name": "C",
+            "pitch": 60
+        },
+        {
+            "name": "Bb",
+            "pitch": 58
+        },
+        {
+            "name": "Bb",
+            "pitch": 58
+        },
+        {
+            "name": "Ab",
+            "pitch": 56
+        },
+        {
+            "name": "C",
+            "pitch": 60
+        },
+        {
+            "name": "Bb",
+            "pitch": 58
+        },
+        {
+            "name": "Bb",
+            "pitch": 58
+        },
+        {
+            "name": "Ab",
+            "pitch": 56
+        },
+        {
+            "name": "C",
+            "pitch": 60
+        },
+        {
+            "name": "Bb",
+            "pitch": 58
+        },
+        {
+            "name": "F",
+            "pitch": 53
         }
     ],
-    "name": "Song"
+    "name": "MY TAB"
 }

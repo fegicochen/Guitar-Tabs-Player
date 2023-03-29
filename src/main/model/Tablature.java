@@ -12,7 +12,7 @@ import java.util.List;
 // Represents a guitar tablature having tabs and speed
 public class Tablature implements Writable {
     private String name;
-    private int speed = 500; // speed to play the notes in milliseconds
+    private int speed = 300; // speed to play the notes in milliseconds
     private final List<GuitarNote> notes; // guitar tablature with notes to be play
 
 
