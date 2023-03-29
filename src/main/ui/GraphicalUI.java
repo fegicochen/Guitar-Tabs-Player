@@ -12,35 +12,27 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class GraphicalUI extends JFrame {
+    private static final String JSON_STORE = "./data/tablature.json";
+    private static final int WIDTH = 1000;
+    public static final int HEIGHT = 800;
     private JDesktopPane desktop;
     private JInternalFrame noteFrame;
     private JInternalFrame tabFrame;
-    private static final int WIDTH = 1000;
-    public static final int HEIGHT = 800;
-    private Tablature tabs;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private static final String JSON_STORE = "./data/tablature.json";
+    private Tablature tabs;
     static JList<String> tabList;
-    DefaultListModel<String> dlm = new DefaultListModel<String>();
-
+    private DefaultListModel<String> dlm;
 
 
     public GraphicalUI() {
-        tabs = new Tablature("MY TAB");
-        noteFrame = new JInternalFrame("Actions",true, false, false,false);
-        tabFrame = new JInternalFrame("Tab",false, false, false,false);
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+        setup();
 
-
-
-        desktop = new JDesktopPane();
         noteFrame.setLayout(new BorderLayout());
-
         tabFrame.setLayout(new BorderLayout());
-        tabFrame.setSize(500,500);
-        tabFrame.setLocation(300,200);
+
+        tabFrame.setSize(500, 500);
+        tabFrame.setLocation(300, 200);
 
 
         setContentPane(desktop);
@@ -48,11 +40,12 @@ public class GraphicalUI extends JFrame {
         setSize(WIDTH, HEIGHT);
 
         addButtonPanel();
+        addListPanel();
+
 
         noteFrame.pack();
         noteFrame.setVisible(true);
         desktop.add(noteFrame);
-
         tabFrame.pack();
         tabFrame.setVisible(true);
         desktop.add(tabFrame);
@@ -60,31 +53,16 @@ public class GraphicalUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         centreOnScreen();
         setVisible(true);
+    }
 
-
-
-
-        //create a panel
-        JPanel p =new JPanel();
-
-        //create a new label
-        JLabel l= new JLabel("select the day of the week");
-
-        //create list
-        tabList = new JList<>(dlm);
-
-        //set a selected index
-        tabList.setSelectedIndex(2);
-
-        //add list to panel
-        p.add(tabList);
-
-        tabFrame.add(p);
-
-        //set the size of frame
-        tabFrame.setSize(400,400);
-
-        tabFrame.show();
+    private void setup() {
+        tabs = new Tablature("MY TAB");
+        noteFrame = new JInternalFrame("Actions");
+        tabFrame = new JInternalFrame("Tab");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        desktop = new JDesktopPane();
+        dlm = new DefaultListModel<String>();
     }
 
     public static void main(String[] args) {
@@ -102,13 +80,23 @@ public class GraphicalUI extends JFrame {
     }
 
 
+    private void addListPanel() {
+        JPanel p = new JPanel();
+        tabList = new JList<>(dlm);
+        tabList.setSelectedIndex(2);
+        p.add(tabList);
+        tabFrame.add(p);
+        tabFrame.setSize(400, 400);
+        tabFrame.show();
+    }
+
 
     /**
      * Helper to add control buttons.
      */
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4,2));
+        buttonPanel.setLayout(new GridLayout(4, 2));
         buttonPanel.add(new JButton(new PlayNotesAction()));
         buttonPanel.add(new JButton(new AddNoteAction()));
         buttonPanel.add(new JButton(new RemoveNoteAction()));
@@ -137,7 +125,8 @@ public class GraphicalUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String note = JOptionPane.showInputDialog(null, "Enter Note", "Enter an Integer from 1 to 140", JOptionPane.QUESTION_MESSAGE);
+            String note = JOptionPane.showInputDialog(null, "Enter Note",
+                    "Enter an Integer from 1 to 140", JOptionPane.QUESTION_MESSAGE);
             int intNote = Integer.parseInt(note);
             GuitarNote newNote = new GuitarNote("note");
             newNote.setPitch(intNote);
@@ -190,12 +179,11 @@ public class GraphicalUI extends JFrame {
             } catch (IOException exception) {
                 System.out.println("Unable to read from file: " + JSON_STORE);
             }
-            for (GuitarNote g: tabs.getNotes()) {
+            for (GuitarNote g : tabs.getNotes()) {
                 dlm.addElement(g.getGuitarNote());
             }
         }
     }
-
 
 
 }
