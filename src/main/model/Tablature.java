@@ -88,6 +88,7 @@ public class Tablature implements Writable {
         }
     }
 
+    // EFFECTS: labels the JSON document and returns the JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

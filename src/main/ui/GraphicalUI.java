@@ -11,10 +11,11 @@ import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// Represents a graphical ui for TabsApp
 public class GraphicalUI extends JFrame {
     private static final String JSON_STORE = "./data/tablature.json";
-    private static final int WIDTH = 1000;
-    public static final int HEIGHT = 800;
+    private static final int WIDTH = 1280;
+    public static final int HEIGHT = 720;
     private JDesktopPane desktop;
     private JInternalFrame noteFrame;
     private JInternalFrame tabFrame;
@@ -23,25 +24,28 @@ public class GraphicalUI extends JFrame {
     private Tablature tabs;
     static JList<String> tabList;
     private DefaultListModel<String> dlm;
+    private JLabel image;
 
-
+    //EFFECTS: creates a graphical UI (constructor)
     public GraphicalUI() {
         setup();
+
 
         noteFrame.setLayout(new BorderLayout());
         tabFrame.setLayout(new BorderLayout());
 
-        tabFrame.setSize(500, 500);
-        tabFrame.setLocation(300, 200);
+        tabFrame.setLocation(300, 100);
 
 
         setContentPane(desktop);
         setTitle("Guitar Tabs Player");
         setSize(WIDTH, HEIGHT);
 
+        addImage();
         addButtonPanel();
         addListPanel();
 
+        tabFrame.show();
 
         noteFrame.pack();
         noteFrame.setVisible(true);
@@ -49,30 +53,33 @@ public class GraphicalUI extends JFrame {
         tabFrame.pack();
         tabFrame.setVisible(true);
         desktop.add(tabFrame);
+        desktop.add(image);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         centreOnScreen();
         setVisible(true);
+
+        tabFrame.setSize(200, 520);
     }
 
+
+    public static void main(String[] args) {
+        new GraphicalUI();
+    }
+
+    //EFFECTS: helper to set up the fields
     private void setup() {
         tabs = new Tablature("MY TAB");
-        noteFrame = new JInternalFrame("Actions");
-        tabFrame = new JInternalFrame("Tab");
+        noteFrame = new JInternalFrame("Actions", false, false, false, false);
+        tabFrame = new JInternalFrame("Tab", true, false, false, false);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         desktop = new JDesktopPane();
         dlm = new DefaultListModel<String>();
     }
 
-    public static void main(String[] args) {
-        new GraphicalUI();
-    }
 
-
-    /**
-     * Helper to centre main application window on desktop
-     */
+    //EFFECTS: centre main application window on desktop
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
         int height = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -80,20 +87,25 @@ public class GraphicalUI extends JFrame {
     }
 
 
-    private void addListPanel() {
-        JPanel p = new JPanel();
-        tabList = new JList<>(dlm);
-        tabList.setSelectedIndex(2);
-        p.add(tabList);
-        tabFrame.add(p);
-        tabFrame.setSize(400, 400);
-        tabFrame.show();
+    //EFFECTS: adds the pitch to note reference sheet image to the desktop window
+    private void addImage() {
+        image = new JLabel();
+        ImageIcon imageIcon = new ImageIcon("data/midi.png");
+        image.setIcon(imageIcon);
+        image.setBounds(500, -110, 750, 500);
     }
 
 
-    /**
-     * Helper to add control buttons.
-     */
+    //EFFECTS: adds the tablature list to the desktop window
+    private void addListPanel() {
+        JPanel p = new JPanel();
+        tabList = new JList<>(dlm);
+        p.add(tabList);
+        tabFrame.add(p);
+    }
+
+
+    //EFFECTS: adds the button panel to the desktop window
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 2));
@@ -105,28 +117,34 @@ public class GraphicalUI extends JFrame {
         noteFrame.add(buttonPanel);
     }
 
+    // Represents the Play Notes button
     private class PlayNotesAction extends AbstractAction {
 
+        //EFFECTS: sets the button name
         PlayNotesAction() {
             super("Play Notes");
         }
 
         @Override
+        //EFFECTS: plays the notes when you press the button
         public void actionPerformed(ActionEvent e) {
             tabs.playNotes();
         }
     }
 
-    private class AddNoteAction extends AbstractAction {
 
+    // Represents the Add Notes button
+    private class AddNoteAction extends AbstractAction {
+        //EFFECTS: sets the button name
         AddNoteAction() {
             super("Add Note");
         }
 
         @Override
+        //EFFECTS: prompts an input dialog for you to insert a note to add to the tabs and then adds it
         public void actionPerformed(ActionEvent e) {
-            String note = JOptionPane.showInputDialog(null, "Enter Note",
-                    "Enter an Integer from 1 to 140", JOptionPane.QUESTION_MESSAGE);
+            String note = JOptionPane.showInputDialog(null, "Enter an Integer from 0 to 127",
+                    "Enter Note", JOptionPane.QUESTION_MESSAGE);
             int intNote = Integer.parseInt(note);
             GuitarNote newNote = new GuitarNote("note");
             newNote.setPitch(intNote);
@@ -135,25 +153,30 @@ public class GraphicalUI extends JFrame {
         }
     }
 
+    // Represents the Remove Notes button
     private class RemoveNoteAction extends AbstractAction {
-
+        //EFFECTS: sets the button name
         RemoveNoteAction() {
             super("Remove Note");
         }
 
         @Override
+        //EFFECTS: removes the last note in the tabs
         public void actionPerformed(ActionEvent e) {
             tabs.removeNote();
             dlm.removeElementAt(dlm.size() - 1);
         }
     }
 
+    // Represents the Save Notes button
     private class SaveNotesAction extends AbstractAction {
+        //EFFECTS: sets the button name
         SaveNotesAction() {
             super("Save Notes");
         }
 
         @Override
+        //EFFECTS: saves the current tabs for you to load next time
         public void actionPerformed(ActionEvent e) {
             try {
                 jsonWriter.open();
@@ -166,13 +189,18 @@ public class GraphicalUI extends JFrame {
         }
     }
 
+
+    // Represents the Load Notes button
     private class LoadNotesAction extends AbstractAction {
+        //EFFECTS: sets the button name
         LoadNotesAction() {
             super("Load Notes");
         }
 
         @Override
+        //EFFECTS: loads the previously saved tabs
         public void actionPerformed(ActionEvent e) {
+            dlm.removeAllElements();
             try {
                 tabs = jsonReader.read();
                 System.out.println("Loaded " + tabs.getName() + " from " + JSON_STORE);

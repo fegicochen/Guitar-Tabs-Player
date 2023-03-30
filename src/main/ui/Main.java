@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 // Runs TabsApp
 public class Main {
+    // EFFECTS: runs TabsApp(), return string if file not found
     public static void main(String[] args) {
         try {
             new TabsApp();
