@@ -1,5 +1,6 @@
 package ui;
 
+import model.EventLog;
 import model.GuitarNote;
 import model.Tablature;
 import persistence.JsonReader;
@@ -13,19 +14,20 @@ import java.io.IOException;
 
 // Represents a graphical ui for TabsApp
 public class GraphicalUI extends JFrame {
+    public static final int HEIGHT = 720;
     private static final String JSON_STORE = "./data/tablature.json";
     private static final int WIDTH = 1280;
-    public static final int HEIGHT = 720;
+    static JList<String> tabList;
     private JDesktopPane desktop;
     private JInternalFrame noteFrame;
     private JInternalFrame tabFrame;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private Tablature tabs;
-    static JList<String> tabList;
     private DefaultListModel<String> dlm;
     private JLabel image;
 
+    // MODIFIES: this
     //EFFECTS: creates a graphical UI (constructor)
     public GraphicalUI() {
         setup();
@@ -55,11 +57,14 @@ public class GraphicalUI extends JFrame {
         desktop.add(tabFrame);
         desktop.add(image);
 
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         centreOnScreen();
         setVisible(true);
 
         tabFrame.setSize(200, 520);
+
+
     }
 
 
@@ -78,7 +83,7 @@ public class GraphicalUI extends JFrame {
         dlm = new DefaultListModel<String>();
     }
 
-
+    // MODIFIES: this
     //EFFECTS: centre main application window on desktop
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -86,7 +91,7 @@ public class GraphicalUI extends JFrame {
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
-
+    // MODIFIES: this
     //EFFECTS: adds the pitch to note reference sheet image to the desktop window
     private void addImage() {
         image = new JLabel();
@@ -95,7 +100,7 @@ public class GraphicalUI extends JFrame {
         image.setBounds(500, -110, 750, 500);
     }
 
-
+    // MODIFIES: this
     //EFFECTS: adds the tablature list to the desktop window
     private void addListPanel() {
         JPanel p = new JPanel();
@@ -104,7 +109,7 @@ public class GraphicalUI extends JFrame {
         tabFrame.add(p);
     }
 
-
+    // MODIFIES: this
     //EFFECTS: adds the button panel to the desktop window
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
@@ -114,18 +119,21 @@ public class GraphicalUI extends JFrame {
         buttonPanel.add(new JButton(new RemoveNoteAction()));
         buttonPanel.add(new JButton(new SaveNotesAction()));
         buttonPanel.add(new JButton(new LoadNotesAction()));
+        buttonPanel.add(new JButton(new QuitAction()));
         noteFrame.add(buttonPanel);
     }
 
     // Represents the Play Notes button
     private class PlayNotesAction extends AbstractAction {
 
+        // MODIFIES: this
         //EFFECTS: sets the button name
         PlayNotesAction() {
             super("Play Notes");
         }
 
         @Override
+        // MODIFIES: this
         //EFFECTS: plays the notes when you press the button
         public void actionPerformed(ActionEvent e) {
             tabs.playNotes();
@@ -135,12 +143,14 @@ public class GraphicalUI extends JFrame {
 
     // Represents the Add Notes button
     private class AddNoteAction extends AbstractAction {
+        // MODIFIES: this
         //EFFECTS: sets the button name
         AddNoteAction() {
             super("Add Note");
         }
 
         @Override
+        // MODIFIES: this
         //EFFECTS: prompts an input dialog for you to insert a note to add to the tabs and then adds it
         public void actionPerformed(ActionEvent e) {
             String note = JOptionPane.showInputDialog(null, "Enter an Integer from 0 to 127",
@@ -155,12 +165,14 @@ public class GraphicalUI extends JFrame {
 
     // Represents the Remove Notes button
     private class RemoveNoteAction extends AbstractAction {
+        // MODIFIES: this
         //EFFECTS: sets the button name
         RemoveNoteAction() {
             super("Remove Note");
         }
 
         @Override
+        // MODIFIES: this
         //EFFECTS: removes the last note in the tabs
         public void actionPerformed(ActionEvent e) {
             tabs.removeNote();
@@ -170,12 +182,14 @@ public class GraphicalUI extends JFrame {
 
     // Represents the Save Notes button
     private class SaveNotesAction extends AbstractAction {
+        // MODIFIES: this
         //EFFECTS: sets the button name
         SaveNotesAction() {
             super("Save Notes");
         }
 
         @Override
+        // MODIFIES: this
         //EFFECTS: saves the current tabs for you to load next time
         public void actionPerformed(ActionEvent e) {
             try {
@@ -190,14 +204,36 @@ public class GraphicalUI extends JFrame {
     }
 
 
+    // Represents the Quit button
+    private class QuitAction extends AbstractAction {
+        // MODIFIES: this
+        //EFFECTS: sets the button name
+        QuitAction() {
+            super("Quit");
+        }
+
+        @Override
+        // MODIFIES: this
+        //EFFECTS: quits the tabs
+        public void actionPerformed(ActionEvent e) {
+            for (model.Event event : EventLog.getInstance()) {
+                System.out.println(event);
+            }
+            System.exit(69);
+        }
+    }
+
+
     // Represents the Load Notes button
     private class LoadNotesAction extends AbstractAction {
+        // MODIFIES: this
         //EFFECTS: sets the button name
         LoadNotesAction() {
             super("Load Notes");
         }
 
         @Override
+        // MODIFIES: this
         //EFFECTS: loads the previously saved tabs
         public void actionPerformed(ActionEvent e) {
             dlm.removeAllElements();

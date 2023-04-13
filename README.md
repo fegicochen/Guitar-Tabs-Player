@@ -37,3 +37,30 @@ As a user, I want to be able to load the tabs from file. (if I so choose)
 - You can save the state of my application by clicking the Save Notes button
 
 - You can reload the state of my application by clicking the Load Notes button
+
+# Phase 4: Task 2
+
+Thu Apr 13 15:32:56 PDT 2023
+Added a note to tabs.
+Thu Apr 13 15:32:58 PDT 2023
+Added a note to tabs.
+Thu Apr 13 15:32:59 PDT 2023
+Added a note to tabs.
+Thu Apr 13 15:33:02 PDT 2023
+Added a note to tabs.
+Thu Apr 13 15:33:04 PDT 2023
+Removed a note from tabs.
+Thu Apr 13 15:33:05 PDT 2023
+Removed a note from tabs.
+Thu Apr 13 15:33:08 PDT 2023
+Played notes in tabs.
+Thu Apr 13 15:33:11 PDT 2023
+Saved notes to data.
+Thu Apr 13 15:33:12 PDT 2023
+Removed a note from tabs.
+Thu Apr 13 15:33:13 PDT 2023
+Loaded notes from data.
+Thu Apr 13 15:33:13 PDT 2023
+Added a note to tabs.
+Thu Apr 13 15:33:13 PDT 2023
+Added a note to tabs.

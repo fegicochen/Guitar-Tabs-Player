@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Event;
+import model.EventLog;
 import model.GuitarNote;
 import model.Tablature;
 import org.json.JSONArray;
@@ -36,7 +38,9 @@ public class JsonReader {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
+        EventLog.getInstance().logEvent(new Event("Loaded notes from data."));
         return contentBuilder.toString();
+
     }
 
     // EFFECTS: parses tablature from JSON object and returns it

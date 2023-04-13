@@ -1,6 +1,7 @@
 package ui;
 
 import jm.music.data.Note;
+import model.EventLog;
 import model.GuitarNote;
 import model.Tablature;
 import persistence.JsonReader;
@@ -50,6 +51,10 @@ public class TabsApp {
         }
 
         System.out.println("\nExiting Tabs!");
+        for (model.Event event : EventLog.getInstance()) {
+            System.out.println(event);
+        }
+        System.exit(21);
     }
 
     // MODIFIES: this

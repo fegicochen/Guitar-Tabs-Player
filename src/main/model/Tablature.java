@@ -62,6 +62,7 @@ public class Tablature implements Writable {
      */
     public void addNote(GuitarNote note) {
         notes.add(note);
+        EventLog.getInstance().logEvent(new Event("Added a note to tabs."));
     }
 
 
@@ -72,6 +73,7 @@ public class Tablature implements Writable {
      */
     public void removeNote() {
         notes.remove((notes.size() - 1));
+        EventLog.getInstance().logEvent(new Event("Removed a note from tabs."));
     }
 
     /*
@@ -86,6 +88,7 @@ public class Tablature implements Writable {
             }
             Play.midi(note);
         }
+        EventLog.getInstance().logEvent(new Event("Played notes in tabs."));
     }
 
     // EFFECTS: labels the JSON document and returns the JSON object
