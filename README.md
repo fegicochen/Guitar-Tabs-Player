@@ -64,3 +64,11 @@ Thu Apr 13 15:33:13 PDT 2023
 Added a note to tabs.
 Thu Apr 13 15:33:13 PDT 2023
 Added a note to tabs.
+
+# Phase 4: Task 3
+If I had more time to work on the project, 
+I would try to reduce coupling by abstracting duplicated code into methods.
+Specifically, there are some code clones between the GraphicalUI and TabsApp,
+so I can pull them into methods. The advantage of this refactoring is that
+there is less duplicated code, and it improves readability. One disadvantage of
+refactoring is that it takes time.
